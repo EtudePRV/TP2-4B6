@@ -110,6 +110,7 @@ public class LogOn extends JFrame {
 		gbc_errorLbl.gridx = 0;
 		gbc_errorLbl.gridy = 4;
 		contentPane.add(errorLbl, gbc_errorLbl);
+		this.setVisible(true);
 	}
 
 }
