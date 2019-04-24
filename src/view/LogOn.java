@@ -12,20 +12,22 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.JPasswordField;
 
 public class LogOn extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField userText;
-	private JTextField passwordText;
 	private JLabel lblConnexionALapplication;
 	private JLabel userLbl;
 	private JLabel passwordLbl;
 	private JButton enterBtn;
 	private JButton QuitBtn;
 	private JLabel errorLbl;
+	private JPasswordField passwordField;
 	
 	public LogOn() {
+		setResizable(false);
 		setTitle("Gestion de Biblioteque de Musical - Connexion");
 		setBounds( 100, 100, 450, 172 );
 		contentPane = new JPanel();
@@ -41,15 +43,15 @@ public class LogOn extends JFrame {
 		lblConnexionALapplication = new JLabel("Connexion a l'application");
 		lblConnexionALapplication.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GridBagConstraints gbc_lblConnexionALapplication = new GridBagConstraints();
-		gbc_lblConnexionALapplication.gridwidth = 2;
-		gbc_lblConnexionALapplication.insets = new Insets(0, 0, 5, 5);
+		gbc_lblConnexionALapplication.gridwidth = 3;
+		gbc_lblConnexionALapplication.insets = new Insets(0, 0, 5, 0);
 		gbc_lblConnexionALapplication.gridx = 0;
 		gbc_lblConnexionALapplication.gridy = 0;
 		contentPane.add(lblConnexionALapplication, gbc_lblConnexionALapplication);
 		
 		userLbl = new JLabel("Nom d'Utilisateur");
 		GridBagConstraints gbc_userLbl = new GridBagConstraints();
-		gbc_userLbl.fill = GridBagConstraints.HORIZONTAL;
+		gbc_userLbl.anchor = GridBagConstraints.EAST;
 		gbc_userLbl.insets = new Insets(0, 0, 5, 5);
 		gbc_userLbl.gridx = 0;
 		gbc_userLbl.gridy = 1;
@@ -67,27 +69,26 @@ public class LogOn extends JFrame {
 		
 		passwordLbl = new JLabel("Mot de passe");
 		GridBagConstraints gbc_passwordLbl = new GridBagConstraints();
-		gbc_passwordLbl.fill = GridBagConstraints.HORIZONTAL;
+		gbc_passwordLbl.anchor = GridBagConstraints.EAST;
 		gbc_passwordLbl.insets = new Insets(0, 0, 5, 5);
 		gbc_passwordLbl.gridx = 0;
 		gbc_passwordLbl.gridy = 2;
 		contentPane.add(passwordLbl, gbc_passwordLbl);
-		
-		passwordText = new JTextField();
-		GridBagConstraints gbc_passwordText = new GridBagConstraints();
-		gbc_passwordText.insets = new Insets(0, 0, 5, 0);
-		gbc_passwordText.gridwidth = 2;
-		gbc_passwordText.fill = GridBagConstraints.HORIZONTAL;
-		gbc_passwordText.gridx = 1;
-		gbc_passwordText.gridy = 2;
-		contentPane.add(passwordText, gbc_passwordText);
-		passwordText.setColumns(10);
 		
 		enterBtn = new JButton("Entrer");
 		enterBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
+		passwordField = new JPasswordField();
+		GridBagConstraints gbc_passwordField = new GridBagConstraints();
+		gbc_passwordField.gridwidth = 2;
+		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
+		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_passwordField.gridx = 1;
+		gbc_passwordField.gridy = 2;
+		contentPane.add(passwordField, gbc_passwordField);
 		GridBagConstraints gbc_enterBtn = new GridBagConstraints();
 		gbc_enterBtn.fill = GridBagConstraints.HORIZONTAL;
 		gbc_enterBtn.insets = new Insets(0, 0, 5, 5);

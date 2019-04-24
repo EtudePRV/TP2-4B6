@@ -24,18 +24,19 @@ public class GestionArtiste extends JFrame {
 
 
 	public GestionArtiste() {
-		setBounds( 100, 100, 652, 370 );
+		setTitle("Gestion de Biblioteque de Musical - Gestion des Artistes");
+		setBounds( 100, 100, 702, 402 );
 		contentPane = new JPanel();
 		contentPane.setBorder( new EmptyBorder( 5, 5, 5, 5 ) );
 		setContentPane( contentPane );
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{100, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 28, 0};
 		gbl_contentPane.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblGestionDartiste = new JLabel("Gestion d'Artiste");
+		JLabel lblGestionDartiste = new JLabel("Gestion des Artiste");
 		lblGestionDartiste.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblGestionDartiste = new GridBagConstraints();
 		gbc_lblGestionDartiste.gridwidth = 2;
@@ -190,13 +191,20 @@ public class GestionArtiste extends JFrame {
 		gbc_lblMembre.gridy = 9;
 		contentPane.add(lblMembre, gbc_lblMembre);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("New check box");
+		JCheckBox chckbxNewCheckBox = new JCheckBox("");
 		GridBagConstraints gbc_chckbxNewCheckBox = new GridBagConstraints();
 		gbc_chckbxNewCheckBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_chckbxNewCheckBox.insets = new Insets(0, 0, 5, 5);
 		gbc_chckbxNewCheckBox.gridx = 2;
 		gbc_chckbxNewCheckBox.gridy = 9;
 		contentPane.add(chckbxNewCheckBox, gbc_chckbxNewCheckBox);
+		
+		JLabel lblErreur = new JLabel("");
+		GridBagConstraints gbc_lblErreur = new GridBagConstraints();
+		gbc_lblErreur.insets = new Insets(0, 0, 0, 5);
+		gbc_lblErreur.gridx = 0;
+		gbc_lblErreur.gridy = 11;
+		contentPane.add(lblErreur, gbc_lblErreur);
 	}
 
 }
