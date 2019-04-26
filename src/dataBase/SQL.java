@@ -70,31 +70,34 @@ public class SQL {
 		return result;
 	}
 	
-	public void printTable(String select) {
+	public void printTable( String select ) {
 		try {
-			ResultSet table = select(select);
-			ResultSetMetaData structure = table.getMetaData();
-			int nbColonnes = structure.getColumnCount();
-			System.out.println();
-			System.out.print("|");
-			
-			for(int i = 1; i <=nbColonnes; i++) {
-				System.out.print( structure.getColumnName( i ) + "\t|" );
-			}
-			System.out.println();
-			System.out.print("|");
-			while(table.next()) {
-				for(int i = 1 ; i <= nbColonnes; i++){
+			ResultSet table = select( select );
+			if ( table != null ) {
+				ResultSetMetaData structure = table.getMetaData();
+				int nbColonnes = structure.getColumnCount();
+				System.out.println();
+				System.out.print( "|" );
 
-				      System.out.print(table.getString(i) + "\t|"); //Print one element of a row
-
+				for ( int i = 1; i <= nbColonnes; i++ ) {
+					System.out.print( structure.getColumnName( i ) + "\t|" );
 				}
 				System.out.println();
+				System.out.print( "|" );
+				while ( table.next() ) {
+					for ( int i = 1; i <= nbColonnes; i++ ) {
+
+						System.out.print( table.getString( i ) + "\t|" ); 
+
+					}
+					System.out.println();
+				}
 			}
-		} catch(SQLException se) {
-			System.out.println("ERREUR: Probleme d'impresion: " + se);
+
+		} catch ( SQLException se ) {
+			System.out.println( "ERREUR: Probleme d'impresion: " + se );
 		}
-		
+
 	}
 
 }

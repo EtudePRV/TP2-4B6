@@ -3,19 +3,21 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import listeners.LogOnListener;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import java.awt.Insets;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JPasswordField;
 
 public class LogOn extends JFrame {
 
+	private LogOnListener listener;
 	private JPanel contentPane;
 	private JTextField userText;
 	private JLabel lblConnexionALapplication;
@@ -26,7 +28,8 @@ public class LogOn extends JFrame {
 	private JLabel errorLbl;
 	private JPasswordField passwordField;
 	
-	public LogOn() {
+	public LogOn(LogOnListener LogListener) {
+		listener = LogListener;
 		setResizable(false);
 		setTitle("Gestion de Biblioteque de Musical - Connexion");
 		setBounds( 100, 100, 450, 172 );
@@ -76,10 +79,7 @@ public class LogOn extends JFrame {
 		contentPane.add(passwordLbl, gbc_passwordLbl);
 		
 		enterBtn = new JButton("Entrer");
-		enterBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		enterBtn.addActionListener(listener);
 		
 		passwordField = new JPasswordField();
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
@@ -97,6 +97,7 @@ public class LogOn extends JFrame {
 		contentPane.add(enterBtn, gbc_enterBtn);
 		
 		QuitBtn = new JButton("Quiter");
+		QuitBtn.addActionListener(listener);
 		GridBagConstraints gbc_QuitBtn = new GridBagConstraints();
 		gbc_QuitBtn.insets = new Insets(0, 0, 5, 0);
 		gbc_QuitBtn.fill = GridBagConstraints.HORIZONTAL;
@@ -112,6 +113,16 @@ public class LogOn extends JFrame {
 		gbc_errorLbl.gridy = 4;
 		contentPane.add(errorLbl, gbc_errorLbl);
 		this.setVisible(true);
+	}
+	
+	public String getuser() {
+		return this.userText.getText();
+	}
+	public String getpassword() {
+		return this.passwordField.getText();
+	}
+	public void setErreur(String erreur) {
+		this.errorLbl.setText( erreur );
 	}
 
 }

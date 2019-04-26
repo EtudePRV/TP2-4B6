@@ -103,6 +103,7 @@ public class Menu extends JFrame {
 		gbc_btnQuiter.gridx = 1;
 		gbc_btnQuiter.gridy = 4;
 		contentPane.add(btnQuiter, gbc_btnQuiter);
+		this.setVisible( true );
 	}
 
 }
