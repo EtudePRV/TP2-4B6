@@ -1,0 +1,46 @@
+commit b01a71d0c43c670bab7a595ea056d00bfcbd6156
+Author: Pierre-Rafael Vellone <killer_paul_10@hotmail.com>
+Date:   Tue Apr 23 21:34:38 2019 -0400
+
+    Remise Livrable 1
+    Les fenetre son creer
+    La base de Donner et Creer
+    Une class de gestion de la BD est Creer
+    
+    Signed-off-by: Pierre-Rafael Vellone
+
+commit 21f8e23515f690f10952fb4789d6bcd0ee638fc2
+Author: Pierre-Rafael Vellone <killer_paul_10@hotmail.com>
+Date:   Tue Apr 23 11:40:27 2019 -0400
+
+    Ajout d'un Handler d'object pour les utilisation future;
+    Signed-off-by: Pierre-Rafael Vellone
+
+commit 71707af8e4d57cda8a596c391a9162f58d11494c
+Author: Pierre-Rafael Vellone <killer_paul_10@hotmail.com>
+Date:   Tue Apr 23 11:20:27 2019 -0400
+
+    Gestion de DB + Vue Log,Menu et Gestion artiste ajouter
+    Signed-off-by: Pierre-Rafael Vellone
+
+commit 5c5df885674f6c35a691fb07027e5c73658362fa
+Author: Pierre-Rafael Vellone <killer_paul_10@hotmail.com>
+Date:   Tue Apr 16 10:36:47 2019 -0400
+
+    Creation de la DB
+    Signed-off-by: Pierre-Rafael Vellone
+
+commit 5b6025d76c16ecc64ff8e4ce7e1af57d8eb94ce5
+Author: Pierre-Rafael Vellone <killer_paul_10@hotmail.com>
+Date:   Tue Apr 16 09:50:31 2019 -0400
+
+    livrable 0
+    Signed-off-by: Pierre-Rafael Vellone
+
+commit 7000c756e8fffda179e20da917fb8fdac2dda586
+Author: Pierre-Rafael Vellone <killer_paul_10@hotmail.com>
+Date:   Fri Mar 29 11:02:09 2019 -0400
+
+    Initialisation du project
+    
+    Signed-off-by: Pierre-Rafael Vellone
