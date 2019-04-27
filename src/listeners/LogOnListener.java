@@ -6,17 +6,19 @@ import javax.swing.JButton;
 
 import controler.AppControler;
 
-public class LogOnListener implements ActionListener  {
-	AppControler controleur;
-	public LogOnListener(AppControler controler) {
+public class LogOnListener implements ActionListener {
+	private AppControler controleur;
+
+	public LogOnListener( AppControler controler ) {
 		controleur = controler;
 	}
+
 	@Override
 	public void actionPerformed( ActionEvent e ) {
 		Object trigger = e.getSource();
-		
-		if(trigger.getClass() == JButton.class) {
-			switch(( (JButton) trigger ).getText()) {
+
+		if ( trigger.getClass() == JButton.class ) {
+			switch ( ( (JButton) trigger ).getText() ) {
 			case "Entrer":
 				controleur.logIn();
 				break;
@@ -25,7 +27,7 @@ public class LogOnListener implements ActionListener  {
 				break;
 			}
 		}
-			
+
 	}
 
 }

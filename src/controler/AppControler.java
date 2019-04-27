@@ -12,15 +12,16 @@ public class AppControler implements Constante {
 	
 	private ObjectHandler objectHandler;
 	private SQL database;
-	
+	private boolean isOpen;
 	public AppControler() {
-		objectHandler = new ObjectHandler();
-		objectHandler.add(this,"Controler");
+		
 	}
 	public Object getObject(String name) {
 		return objectHandler.get( name );
 	}
 	public void start() {
+		objectHandler = new ObjectHandler();
+		objectHandler.add(this,"Controler");
 		database = new SQL(CONNECTIONSTRING);
 		objectHandler.add( new LogOnListener(this),"LogOnListener");
 		objectHandler.add( new LogOn((LogOnListener)objectHandler.get( "LogOnListener" )), "LogOn" );
@@ -38,12 +39,12 @@ public class AppControler implements Constante {
 			if ( user.next() ) {
 				if ( user.getString( 3 ).equals( password ) ) {
 					this.enter();
-					System.out.println( "Match" );
+					( (LogOn) objectHandler.get( "LogOn" ) ).setErreur( "Bienvenu!" );
 				} else {
-					( (LogOn) objectHandler.get( "LogOn" ) ).setErreur( "Le mot de passe est Invalide" );
+					( (LogOn) objectHandler.get( "LogOn" ) ).setErreur( "Le mot de passe est Invalide!" );
 				}
 			} else {
-				( (LogOn) objectHandler.get( "LogOn" ) ).setErreur( "L'utilisateur n'existe pas!" );
+				( (LogOn) objectHandler.get( "LogOn" ) ).setErreur( "L'utilisateur est Invalide!" );
 			}
 			database.disconnect();
 		} catch ( SQLException se ) {
@@ -52,8 +53,28 @@ public class AppControler implements Constante {
 		}
 	}
 	public void enter() {
-		objectHandler.add( new Menu(), "Menu" );
+		isOpen = false;
+		objectHandler.add( new MenuListener(this), "MenuListner" );
+		objectHandler.add( new Menu((MenuListener)objectHandler.get( "MenuListner" )), "Menu" );
 		( (LogOn) objectHandler.get( "LogOn" ) ).dispose();
+		
+	}
+	public void disconect() {
+		objectHandler.empty();
+		objectHandler = null;
+		System.gc();
+		this.start();
+	}
+	public void OpenGestionAlbum() {
+		
+	}
+	public void ClosenGestionAlbum() {
+		
+	}
+	public void OpenGestionArtiste() {
+		
+	}
+	public void CloseGestionArtiste() {
 		
 	}
 }

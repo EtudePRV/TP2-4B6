@@ -3,6 +3,9 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import listeners.MenuListener;
+
 import java.awt.GridBagLayout;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -12,43 +15,60 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
 
 public class Menu extends JFrame {
 
+	private MenuListener listner;
 	private JPanel contentPane;
-
+	private JMenuBar menuBar;
+	private JMenu mnUser;
+	private JMenuItem mntmDeconexion;
+	private JMenuItem mntmQuiter;
+	private JMenu mnMenu;
+	private JMenuItem mntmGestionAlbum;
+	private JMenuItem mntmGestionArtiste;
+	private JMenu mnAide;
+	private JMenuItem mntmAide;
+	private JButton btnGestionDesAlbum;
+	private JButton btnGestionDesArtiste;
+	private JButton btnQuiter;
+	private JButton btnDeconexion;
 	
-	public Menu() {
+	public Menu(MenuListener menuListner) {
+		listner = menuListner;
 		setTitle("Gestion de Biblioteque de Musical - Menu");
 		setBounds( 100, 100, 450, 215 );
 		
-		JMenuBar menuBar = new JMenuBar();
+		 menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnUser = new JMenu("Utilisateur");
+		 mnUser = new JMenu("Utilisateur");
 		menuBar.add(mnUser);
 		
-		JMenuItem mntmDeconexion = new JMenuItem("Deconexion");
+		 mntmDeconexion = new JMenuItem("Deconexion");
 		mnUser.add(mntmDeconexion);
 		
-		JMenuItem mntmQuiter = new JMenuItem("Quiter");
+		 mntmQuiter = new JMenuItem("Quiter");
+		 mntmQuiter.addActionListener(listner);
 		mnUser.add(mntmQuiter);
 		
-		JMenu mnMenu = new JMenu("Fenetre");
+		 mnMenu = new JMenu("Fenetre");
 		menuBar.add(mnMenu);
 		
-		JMenuItem mntmGestionAlbum = new JMenuItem("Gestion Album");
+		 mntmGestionAlbum = new JMenuItem("Gestion Album");
+		 mntmGestionAlbum.addActionListener(listner);
 		mnMenu.add(mntmGestionAlbum);
 		
-		JMenuItem mntmGestionArtiste = new JMenuItem("Gestion Artiste");
+		 mntmGestionArtiste = new JMenuItem("Gestion Artiste");
+		 mntmGestionArtiste.addActionListener(listner);
 		mnMenu.add(mntmGestionArtiste);
 		
-		JMenu mnAide = new JMenu("Aide");
+		 mnAide = new JMenu("Aide");
 		menuBar.add(mnAide);
 		
-		JMenuItem mntmAide = new JMenuItem("Aide");
+		 mntmAide = new JMenuItem("Aide");
+		 mntmAide.addActionListener(listner);
 		mnAide.add(mntmAide);
 		contentPane = new JPanel();
 		contentPane.setBorder( new EmptyBorder( 5, 5, 5, 5 ) );
@@ -68,7 +88,8 @@ public class Menu extends JFrame {
 		gbc_lblNewLabel.gridy = 0;
 		contentPane.add(lblNewLabel, gbc_lblNewLabel);
 		
-		JButton btnGestionDesAlbum = new JButton("Gestion des Album");
+		 btnGestionDesAlbum = new JButton("Gestion des Album");
+		 btnGestionDesAlbum.addActionListener(listner);
 		GridBagConstraints gbc_btnGestionDesAlbum = new GridBagConstraints();
 		gbc_btnGestionDesAlbum.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnGestionDesAlbum.insets = new Insets(0, 0, 5, 5);
@@ -76,7 +97,8 @@ public class Menu extends JFrame {
 		gbc_btnGestionDesAlbum.gridy = 1;
 		contentPane.add(btnGestionDesAlbum, gbc_btnGestionDesAlbum);
 		
-		JButton btnGestionDesArtiste = new JButton("Gestion des Artiste");
+		 btnGestionDesArtiste = new JButton("Gestion des Artiste");
+		 btnGestionDesArtiste.addActionListener(listner);
 		GridBagConstraints gbc_btnGestionDesArtiste = new GridBagConstraints();
 		gbc_btnGestionDesArtiste.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnGestionDesArtiste.insets = new Insets(0, 0, 5, 5);
@@ -84,13 +106,11 @@ public class Menu extends JFrame {
 		gbc_btnGestionDesArtiste.gridy = 2;
 		contentPane.add(btnGestionDesArtiste, gbc_btnGestionDesArtiste);
 		
-		JButton btnQuiter = new JButton("Quiter");
-		btnQuiter.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		 btnQuiter = new JButton("Quiter");
+		btnQuiter.addActionListener(listner);
 		
-		JButton btnDeconexion = new JButton("Deconexion");
+		 btnDeconexion = new JButton("Deconexion");
+		 btnDeconexion.addActionListener(listner);
 		GridBagConstraints gbc_btnDeconexion = new GridBagConstraints();
 		gbc_btnDeconexion.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnDeconexion.insets = new Insets(0, 0, 5, 5);

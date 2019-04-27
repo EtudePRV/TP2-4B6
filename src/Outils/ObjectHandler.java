@@ -2,6 +2,8 @@ package Outils;
 
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
 public class ObjectHandler {
 
 	ArrayList<Object> objectList;
@@ -30,13 +32,14 @@ public class ObjectHandler {
 			System.out.println( "ObjectHandler: Object Found" );
 		} else {
 			tempObject = null;
-			System.out.println( "ObjectHandler: Object Not found");
+			System.out.println( "ObjectHandler: Object Not found" );
 		}
 
 		return tempObject;
 
 	}
-	public String getName(Object object) {
+
+	public String getName( Object object ) {
 		int index = objectList.indexOf( object );
 		String tempString;
 		if ( index >= 0 ) {
@@ -44,10 +47,21 @@ public class ObjectHandler {
 			System.out.println( "ObjectHandler: Object Name Found" );
 		} else {
 			tempString = "NA";
-			System.out.println( "ObjectHandler: Object Name Not found");
+			System.out.println( "ObjectHandler: Object Name Not found" );
 		}
-		
+
 		return tempString;
-		
+
 	}
+
+	public void empty() {
+		for ( Object obj : objectList ) {
+			if ( obj.getClass().getSuperclass().equals( JFrame.class ) ) {
+				( (JFrame) obj ).dispose();
+			}
+		}
+		objectList.clear();
+		nameList.clear();
+	}
+
 }
