@@ -37,6 +37,7 @@ public class Menu extends JFrame {
 	
 	public Menu(MenuListener menuListner) {
 		listner = menuListner;
+		this.addWindowListener( listner );
 		setTitle("Gestion de Biblioteque de Musical - Menu");
 		setBounds( 100, 100, 450, 215 );
 		
@@ -56,11 +57,11 @@ public class Menu extends JFrame {
 		 mnMenu = new JMenu("Fenetre");
 		menuBar.add(mnMenu);
 		
-		 mntmGestionAlbum = new JMenuItem("Gestion Album");
+		 mntmGestionAlbum = new JMenuItem("Gestion des Album");
 		 mntmGestionAlbum.addActionListener(listner);
 		mnMenu.add(mntmGestionAlbum);
 		
-		 mntmGestionArtiste = new JMenuItem("Gestion Artiste");
+		 mntmGestionArtiste = new JMenuItem("Gestion des Artiste");
 		 mntmGestionArtiste.addActionListener(listner);
 		mnMenu.add(mntmGestionArtiste);
 		

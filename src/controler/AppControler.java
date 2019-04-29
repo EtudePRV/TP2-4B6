@@ -9,24 +9,30 @@ import listeners.*;
 import view.*;
 
 public class AppControler implements Constante {
-	
+
 	private ObjectHandler objectHandler;
 	private SQL database;
 	private boolean isOpen;
+
 	public AppControler() {
-		
+
 	}
-	public Object getObject(String name) {
+
+	public Object getObject( String name ) {
 		return objectHandler.get( name );
 	}
+
 	public void start() {
 		objectHandler = new ObjectHandler();
-		objectHandler.add(this,"Controler");
-		database = new SQL(CONNECTIONSTRING);
-		objectHandler.add( new LogOnListener(this),"LogOnListener");
-		objectHandler.add( new LogOn((LogOnListener)objectHandler.get( "LogOnListener" )), "LogOn" );
+		objectHandler.add( this, "Controler" );
+		database = new SQL( CONNECTIONSTRING );
+		objectHandler.add( new LogOnListener( this ), "LogOnListener" );
+		objectHandler.add( new LogOn( (LogOnListener) objectHandler.get( "LogOnListener" ) ), "LogOn" );
+		database.connect();
 	}
+
 	public void exit() {
+		database.disconnect();
 		System.exit( 0 );
 	}
 
@@ -34,7 +40,7 @@ public class AppControler implements Constante {
 		String username = ( (LogOn) objectHandler.get( "LogOn" ) ).getuser();
 		String password = ( (LogOn) objectHandler.get( "LogOn" ) ).getpassword();
 		try {
-			database.connect();
+			
 			ResultSet user = database.select( SELECT_USER + "\'" + username + "\'" );
 			if ( user.next() ) {
 				if ( user.getString( 3 ).equals( password ) ) {
@@ -45,36 +51,55 @@ public class AppControler implements Constante {
 				}
 			} else {
 				( (LogOn) objectHandler.get( "LogOn" ) ).setErreur( "L'utilisateur est Invalide!" );
+				
 			}
-			database.disconnect();
+			
 		} catch ( SQLException se ) {
 			System.out.println( "ERREUR: Probleme de log in: " + se );
 			database.disconnect();
 		}
 	}
+
 	public void enter() {
 		isOpen = false;
-		objectHandler.add( new MenuListener(this), "MenuListner" );
-		objectHandler.add( new Menu((MenuListener)objectHandler.get( "MenuListner" )), "Menu" );
+		objectHandler.add( new MenuListener( this ), "MenuListner" );
+		objectHandler.add( new Menu( (MenuListener) objectHandler.get( "MenuListner" ) ), "Menu" );
 		( (LogOn) objectHandler.get( "LogOn" ) ).dispose();
-		
+
 	}
+
 	public void disconect() {
 		objectHandler.empty();
-		objectHandler = null;
-		System.gc();
+		database.disconnect();
 		this.start();
-	}
-	public void OpenGestionAlbum() {
+		System.gc();
 		
 	}
+	
+	public void OpenGestionAlbum() {
+		
+		
+	}
+	
 	public void ClosenGestionAlbum() {
 		
 	}
+	
 	public void OpenGestionArtiste() {
-		
+		if(!isOpen) {
+			objectHandler.add( new ArtistControler(database,this), "ArtistControler" );
+			objectHandler.add( new ArtisteListener (this,(ArtistControler) objectHandler.get( "ArtistControler" )), "ArtisteListener" );
+			objectHandler.add( new GestionArtiste((ArtisteListener) objectHandler.get( "ArtisteListener" )), "GestionArtiste" );
+			((ArtistControler)objectHandler.get( "ArtistControler" )).setView( (GestionArtiste)objectHandler.get( "GestionArtiste" ) );
+			((ArtistControler)objectHandler.get( "ArtistControler" )).updateTable();
+			isOpen = true;
+		}
 	}
+	
 	public void CloseGestionArtiste() {
-		
+		isOpen = false;
+		objectHandler.remove( "GestionArtiste" );
+		objectHandler.remove( "ArtisteListener" );
+		objectHandler.remove( "ArtistControler" );
 	}
 }

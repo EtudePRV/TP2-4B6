@@ -30,6 +30,7 @@ public class LogOn extends JFrame {
 	
 	public LogOn(LogOnListener LogListener) {
 		listener = LogListener;
+		this.addWindowListener( listener );
 		setResizable(false);
 		setTitle("Gestion de Biblioteque de Musical - Connexion");
 		setBounds( 100, 100, 450, 172 );

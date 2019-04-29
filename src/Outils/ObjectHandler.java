@@ -23,7 +23,7 @@ public class ObjectHandler {
 		return objectList.get( nameList.indexOf( name ) );
 	}
 
-	public Object find( Object object ) {
+	public Object get( Object object ) {
 		int index = objectList.indexOf( object );
 		Object tempObject;
 
@@ -53,7 +53,11 @@ public class ObjectHandler {
 		return tempString;
 
 	}
-
+	public void remove(String name) {
+		int index = nameList.indexOf( name );
+		objectList.remove( index );
+		nameList.remove( index );
+	}
 	public void empty() {
 		for ( Object obj : objectList ) {
 			if ( obj.getClass().getSuperclass().equals( JFrame.class ) ) {

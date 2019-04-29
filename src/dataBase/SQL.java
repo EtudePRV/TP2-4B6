@@ -7,6 +7,9 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 public class SQL {
 	
 	private Connection connexion;
@@ -23,6 +26,7 @@ public class SQL {
 			connexion = DriverManager.getConnection( connectionString );
 			System.out.println( "Connexion Etablie" );
 			connexion.setAutoCommit( false );
+
 		} catch ( ClassNotFoundException cnfe ) {
 			System.out.println( "ERREUR : Driver manquant" );
 			disconnect();
@@ -44,17 +48,16 @@ public class SQL {
 			}
 	}
 	
-	public void requests(String[] request) {
+	public void requests(String select) {
+
 		try {
-			Statement InstructionSet = connexion.createStatement();
-			for(String instruction:request){
-				InstructionSet.addBatch(instruction);
-			}
-			InstructionSet.executeBatch();
+			Statement statement = connexion.createStatement();
+			statement.execute(select);
 			connexion.commit();
 		} catch(SQLException se) {
 			System.out.println("ERREUR: Probleme de Requete: " + se);
 		}
+
 		
 	}
 	
@@ -62,12 +65,42 @@ public class SQL {
 		ResultSet result = null;
 		try {
 			Statement statement = connexion.createStatement();
-			result = statement.executeQuery(select);
+			result = (statement.executeQuery(select));
 		} catch(SQLException se) {
 			System.out.println("ERREUR: Probleme de select: " + se);
 		}
 		
 		return result;
+	}
+
+	public DefaultTableModel tableData( String select ) {
+		ResultSet data = this.select( select );
+		DefaultTableModel table = new DefaultTableModel();;
+		if ( data != null ) {
+			try {
+				ResultSetMetaData structure = data.getMetaData();
+				int columns = structure.getColumnCount();
+				Object[] columnID = new String[columns];
+				for ( int i = 0; i < columns; i++ ) {
+					table.addColumn( structure.getColumnName( i+1 ) );
+					columnID[i] = structure.getColumnName( i+1); 
+				}
+				table.setColumnIdentifiers( columnID );
+				while ( data.next() ) {
+					String[] row = new String[columns];
+					for ( int i = 0; i < columns; i++ ) {
+						row[i] = data.getString( i+1 );
+					}
+					table.addRow( row );
+				}
+
+			} catch ( Exception e ) {
+				System.out.println( "Error SQL:tableDada: " + e );
+			}
+
+		}
+
+		return table;
 	}
 	
 	public void printTable( String select ) {
