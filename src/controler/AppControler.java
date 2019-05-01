@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import Outils.*;
-import dataBase.SQL;
 import listeners.*;
 import view.*;
 
@@ -40,7 +39,7 @@ public class AppControler implements Constante {
 		String username = ( (LogOn) objectHandler.get( "LogOn" ) ).getuser();
 		String password = ( (LogOn) objectHandler.get( "LogOn" ) ).getpassword();
 		try {
-			
+
 			ResultSet user = database.select( SELECT_USER + "\'" + username + "\'" );
 			if ( user.next() ) {
 				if ( user.getString( 3 ).equals( password ) ) {
@@ -51,9 +50,9 @@ public class AppControler implements Constante {
 				}
 			} else {
 				( (LogOn) objectHandler.get( "LogOn" ) ).setErreur( "L'utilisateur est Invalide!" );
-				
+
 			}
-			
+
 		} catch ( SQLException se ) {
 			System.out.println( "ERREUR: Probleme de log in: " + se );
 			database.disconnect();
@@ -73,29 +72,31 @@ public class AppControler implements Constante {
 		database.disconnect();
 		this.start();
 		System.gc();
-		
+
 	}
-	
+
 	public void OpenGestionAlbum() {
-		
-		
+
 	}
-	
+
 	public void ClosenGestionAlbum() {
-		
+
 	}
-	
+
 	public void OpenGestionArtiste() {
-		if(!isOpen) {
-			objectHandler.add( new ArtistControler(database,this), "ArtistControler" );
-			objectHandler.add( new ArtisteListener (this,(ArtistControler) objectHandler.get( "ArtistControler" )), "ArtisteListener" );
-			objectHandler.add( new GestionArtiste((ArtisteListener) objectHandler.get( "ArtisteListener" )), "GestionArtiste" );
-			((ArtistControler)objectHandler.get( "ArtistControler" )).setView( (GestionArtiste)objectHandler.get( "GestionArtiste" ) );
-			((ArtistControler)objectHandler.get( "ArtistControler" )).updateTable();
+		if ( !isOpen ) {
+			objectHandler.add( new ArtistControler( database, this ), "ArtistControler" );
+			objectHandler.add( new ArtisteListener( this, (ArtistControler) objectHandler.get( "ArtistControler" ) ),
+					"ArtisteListener" );
+			objectHandler.add( new GestionArtiste( (ArtisteListener) objectHandler.get( "ArtisteListener" ) ),
+					"GestionArtiste" );
+			( (ArtistControler) objectHandler.get( "ArtistControler" ) )
+					.setView( (GestionArtiste) objectHandler.get( "GestionArtiste" ) );
+			( (ArtistControler) objectHandler.get( "ArtistControler" ) ).updateTable();
 			isOpen = true;
 		}
 	}
-	
+
 	public void CloseGestionArtiste() {
 		isOpen = false;
 		objectHandler.remove( "GestionArtiste" );
