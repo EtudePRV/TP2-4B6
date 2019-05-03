@@ -53,11 +53,13 @@ public class ObjectHandler {
 		return tempString;
 
 	}
-	public void remove(String name) {
+
+	public void remove( String name ) {
 		int index = nameList.indexOf( name );
 		objectList.remove( index );
 		nameList.remove( index );
 	}
+
 	public void empty() {
 		for ( Object obj : objectList ) {
 			if ( obj.getClass().getSuperclass().equals( JFrame.class ) ) {

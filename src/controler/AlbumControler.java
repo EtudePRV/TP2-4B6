@@ -25,7 +25,7 @@ public class AlbumControler implements Constante {
 		controler = controleur;
 		view = new GestionAlbum( new AlbumListener( this ) );
 		this.rechercher();
-		view.setList( ModelArtiste.getListArtiste( database ),ModelTableInaccessible.getListGenre( database ) );
+		view.setList( ModelArtiste.getListArtiste( database ), ModelTableInaccessible.getListGenre( database ) );
 	}
 
 	public void rechercher() {
@@ -63,12 +63,12 @@ public class AlbumControler implements Constante {
 
 		String[] values = view.getValues();
 		boolean valide = false;
-		if(values[0].equals("") && !ModelAlbum.existe( values[1], database )) {
+		if ( values[0].equals( "" ) && !ModelAlbum.existe( values[1], database ) ) {
 			valide = true;
-		} else if(!values[0].equals("")) {
+		} else if ( !values[0].equals( "" ) ) {
 			valide = true;
 		}
-		
+
 		if ( valide ) {
 			ModelAlbum.ajouter( values, database );
 			this.updateTable();
@@ -109,7 +109,8 @@ public class AlbumControler implements Constante {
 			ResultSet data = ModelAlbum.getAlbum( id, database );
 			try {
 				data.next();
-				view.setValues( data.getString( 1 ), data.getString( 2 ),  data.getString( 3 ), data.getInt( 4 ),data.getString( 5 ),data.getString( 6 ));
+				view.setValues( data.getString( 1 ), data.getString( 2 ), data.getString( 3 ), data.getInt( 4 ),
+						data.getString( 5 ), data.getString( 6 ) );
 			} catch ( SQLException e ) {
 				System.out.println( "Erreur:AlbumControler:Select:" + e );
 			}

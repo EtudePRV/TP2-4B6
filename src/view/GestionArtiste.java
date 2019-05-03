@@ -48,6 +48,7 @@ public class GestionArtiste extends JFrame {
 	private JLabel lblImg;
 	private JScrollPane scrollPane;
 	private JScrollPane scrollPane_1;
+	private JLabel lblAlbum;
 
 	public GestionArtiste( ArtisteListener ViewListener ) {
 		listener = ViewListener;
@@ -145,13 +146,20 @@ public class GestionArtiste extends JFrame {
 		gbc_lblInformation.gridy = 6;
 		contentPane.add( lblInformation, gbc_lblInformation );
 
+		lblAlbum = new JLabel( "Album" );
+		GridBagConstraints gbc_lblAlbum = new GridBagConstraints();
+		gbc_lblAlbum.insets = new Insets( 0, 0, 5, 5 );
+		gbc_lblAlbum.gridx = 0;
+		gbc_lblAlbum.gridy = 7;
+		contentPane.add( lblAlbum, gbc_lblAlbum );
+
 		list = new JList();
 		GridBagConstraints gbc_list = new GridBagConstraints();
-		gbc_list.gridheight = 7;
+		gbc_list.gridheight = 6;
 		gbc_list.insets = new Insets( 0, 0, 5, 5 );
 		gbc_list.fill = GridBagConstraints.BOTH;
 		gbc_list.gridx = 0;
-		gbc_list.gridy = 7;
+		gbc_list.gridy = 8;
 		contentPane.add( list, gbc_list );
 
 		JLabel label = new JLabel( "#" );
@@ -163,7 +171,7 @@ public class GestionArtiste extends JFrame {
 		contentPane.add( label, gbc_label );
 
 		textId = new JTextField();
-		textId.setEnabled(false);
+		textId.setEnabled( false );
 		GridBagConstraints gbc_textId = new GridBagConstraints();
 		gbc_textId.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textId.insets = new Insets( 0, 0, 5, 5 );
@@ -290,6 +298,8 @@ public class GestionArtiste extends JFrame {
 		textNom.setText( "" );
 		chckbxMembre.setSelected( false );
 		imgLink = System.getProperty( "user.dir" ) + "/DB/img/blank.png";
+		String[] empty = {};
+		this.setList( empty );
 	}
 
 	public void setError( String error ) {
@@ -313,7 +323,7 @@ public class GestionArtiste extends JFrame {
 	public void setValues( String id, String nom, boolean value, String lien ) {
 		textId.setText( id );
 		textNom.setText( nom );
-		this.setImg(lien);
+		this.setImg( lien );
 		chckbxMembre.setSelected( value );
 	}
 
@@ -332,14 +342,15 @@ public class GestionArtiste extends JFrame {
 	}
 
 	public void updateImage() {
-		ImageIcon imgI = new ImageIcon(imgLink);
+		ImageIcon imgI = new ImageIcon( imgLink );
 		Image img = imgI.getImage();
-		Image newImg = img.getScaledInstance(100,100,Image.SCALE_SMOOTH);
+		Image newImg = img.getScaledInstance( 100, 100, Image.SCALE_SMOOTH );
 		lblImg.setIcon( new ImageIcon( newImg ) );
 	}
-	public void setList(String[] tempString) {
+
+	public void setList( String[] tempString ) {
 		DefaultListModel<String> listModel = new DefaultListModel<>();
-		for(String line : tempString) {
+		for ( String line : tempString ) {
 			listModel.addElement( line );
 		}
 		list.setModel( listModel );

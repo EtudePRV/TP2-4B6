@@ -10,7 +10,7 @@ import javax.swing.JMenuItem;
 
 import controler.AppControler;
 
-public class MenuListener implements ActionListener,WindowListener {
+public class MenuListener implements ActionListener, WindowListener {
 	private AppControler controleur;
 
 	public MenuListener( AppControler controler ) {
@@ -38,8 +38,9 @@ public class MenuListener implements ActionListener,WindowListener {
 			}
 		} else if ( trigger.getClass() == JMenuItem.class ) {
 			switch ( ( (JMenuItem) trigger ).getText() ) {
-			
+
 			case "Aide":
+				controleur.ouvrireAide();
 				break;
 			case "Deconexion":
 				controleur.disconect();
@@ -61,43 +62,43 @@ public class MenuListener implements ActionListener,WindowListener {
 	@Override
 	public void windowOpened( WindowEvent e ) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowClosing( WindowEvent e ) {
 		controleur.exit();
-		
+
 	}
 
 	@Override
 	public void windowClosed( WindowEvent e ) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowIconified( WindowEvent e ) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowDeiconified( WindowEvent e ) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowActivated( WindowEvent e ) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowDeactivated( WindowEvent e ) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

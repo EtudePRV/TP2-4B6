@@ -54,6 +54,9 @@ public class AlbumListener implements ActionListener, MouseListener, WindowListe
 		JTable trigger = (JTable) e.getSource();
 		if ( trigger.getSelectedRow() >= 0 ) {
 			controleur.select( trigger.getModel().getValueAt( trigger.getSelectedRow(), 0 ).toString() );
+			if ( e.getClickCount() == 2 ) {
+				controleur.modifier();
+			}
 		}
 
 	}

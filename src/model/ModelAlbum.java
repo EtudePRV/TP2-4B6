@@ -18,19 +18,20 @@ public class ModelAlbum implements Constante {
 	public static ResultSet getAlbum( String id, SQL database ) {
 		return database.select( SELECT_ALBUM + id );
 	}
-	public static String[] getArtistAlbums (String id, SQL database) {
+
+	public static String[] getArtistAlbums( String id, SQL database ) {
 		ResultSet table = database.select( SELECT_ALBUMS_ARTIST + id );
 		ArrayList<String> list = new ArrayList<String>();
 		try {
-			while(table.next()) {
-				list.add(table.getString(2));
+			while ( table.next() ) {
+				list.add( table.getString( 2 ) );
 			}
 		} catch ( SQLException e ) {
 			e.printStackTrace();
 		}
-		
+
 		String[] listeAlbum = new String[list.size()];
-		for(int i = 0; i < listeAlbum.length; i++) {
+		for ( int i = 0; i < listeAlbum.length; i++ ) {
 			listeAlbum[i] = list.get( i );
 		}
 		return listeAlbum;
@@ -51,12 +52,13 @@ public class ModelAlbum implements Constante {
 	public static void ajouter( String[] values, SQL database ) {
 		String requete = "";
 		if ( values[0].equals( "" ) ) {
-			requete = ADD_ALBUM + "(\'" + values[1] + "\',\'" + ModelTableInaccessible.getId(values[2],database) + "\'," + values[3] + ",\'" + values[4]
-					+ "\'," + ModelArtiste.getId( values[5], database ) + ")";
+			requete = ADD_ALBUM + "(\'" + values[1] + "\',\'" + ModelTableInaccessible.getId( values[2], database )
+					+ "\'," + values[3] + ",\'" + values[4] + "\'," + ModelArtiste.getId( values[5], database ) + ")";
 		} else {
-			requete = UPDATE_ALBUM + " titre =\'" + values[1] + "\', idgenre = " + ModelTableInaccessible.getId(values[2],database) + ",annee = " + values[3]
-					+ ",image = \'" + values[4] + "\', idartise = " + ModelArtiste.getId( values[5], database )
-					+ " Where id = " + values[0];
+			requete = UPDATE_ALBUM + " titre =\'" + values[1] + "\', idgenre = "
+					+ ModelTableInaccessible.getId( values[2], database ) + ",annee = " + values[3] + ",image = \'"
+					+ values[4] + "\', idartise = " + ModelArtiste.getId( values[5], database ) + " Where id = "
+					+ values[0];
 		}
 		database.requests( requete );
 	}

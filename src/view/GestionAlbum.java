@@ -42,7 +42,7 @@ public class GestionAlbum extends JFrame {
 	private JLabel lblErreur;
 	private String imgLink;
 	private JPanel panel;
-	
+
 	public GestionAlbum( AlbumListener ViewListener ) {
 		listener = ViewListener;
 		this.addWindowListener( listener );
@@ -145,21 +145,21 @@ public class GestionAlbum extends JFrame {
 		gbc_scrollPane_1.gridx = 0;
 		gbc_scrollPane_1.gridy = 7;
 		contentPane.add( scrollPane_1, gbc_scrollPane_1 );
-		
+
 		panel = new JPanel();
-		scrollPane_1.setViewportView(panel);
-				GridBagLayout gbl_panel = new GridBagLayout();
-				gbl_panel.columnWidths = new int[]{65, 0};
-				gbl_panel.rowHeights = new int[]{14, 0};
-				gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-				gbl_panel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
-				panel.setLayout(gbl_panel);
-				
-						lblImg = new JLabel( "" );
-						GridBagConstraints gbc_lblImg = new GridBagConstraints();
-						gbc_lblImg.gridx = 0;
-						gbc_lblImg.gridy = 0;
-						panel.add(lblImg, gbc_lblImg);
+		scrollPane_1.setViewportView( panel );
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[] { 65, 0 };
+		gbl_panel.rowHeights = new int[] { 14, 0 };
+		gbl_panel.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
+		panel.setLayout( gbl_panel );
+
+		lblImg = new JLabel( "" );
+		GridBagConstraints gbc_lblImg = new GridBagConstraints();
+		gbc_lblImg.gridx = 0;
+		gbc_lblImg.gridy = 0;
+		panel.add( lblImg, gbc_lblImg );
 
 		JLabel label = new JLabel( "#" );
 		GridBagConstraints gbc_label = new GridBagConstraints();
@@ -308,8 +308,9 @@ public class GestionAlbum extends JFrame {
 	public void clearValues() {
 		textId.setText( "" );
 		textTitre.setText( "" );
-		comboBoxArtiste.setSelectedItem( null);
-		comboBoxGenre.setSelectedItem( null );;
+		comboBoxArtiste.setSelectedItem( null );
+		comboBoxGenre.setSelectedItem( null );
+		;
 		spinnerAnnee.setValue( 0 );
 		imgLink = System.getProperty( "user.dir" ) + "/DB/img/blank.png";
 		this.updateImage();
@@ -321,31 +322,31 @@ public class GestionAlbum extends JFrame {
 
 	public String[] getValues() {
 		String[] values = new String[6];
-		values[0] =textId.getText();
-		values[1] =textTitre.getText();
-		if(comboBoxGenre.getSelectedIndex() >= 0) {
-			values[2] =comboBoxGenre.getSelectedItem().toString();
+		values[0] = textId.getText();
+		values[1] = textTitre.getText();
+		if ( comboBoxGenre.getSelectedIndex() >= 0 ) {
+			values[2] = comboBoxGenre.getSelectedItem().toString();
 		} else {
-			values[2] ="null";
+			values[2] = "null";
 		}
-		
-		values[3] =spinnerAnnee.getValue().toString();
-		values[4] =imgLink;
-		if(comboBoxArtiste.getSelectedIndex() >= 0) {
-			values[5] =comboBoxArtiste.getSelectedItem().toString();
+
+		values[3] = spinnerAnnee.getValue().toString();
+		values[4] = imgLink;
+		if ( comboBoxArtiste.getSelectedIndex() >= 0 ) {
+			values[5] = comboBoxArtiste.getSelectedItem().toString();
 		} else {
-			values[5] ="null";
+			values[5] = "null";
 		}
 		return values;
 	}
 
-	public void setValues( String id, String title,String genre ,int annee , String lien ,String artiste  ) {
+	public void setValues( String id, String title, String genre, int annee, String lien, String artiste ) {
 		textId.setText( id );
 		textTitre.setText( title );
 		spinnerAnnee.setValue( annee );
-		comboBoxArtiste.setSelectedItem(artiste);
+		comboBoxArtiste.setSelectedItem( artiste );
 		comboBoxGenre.setSelectedItem( genre );
-		setImg(lien);
+		setImg( lien );
 	}
 
 	public void setTable( DefaultTableModel model ) {
@@ -363,17 +364,18 @@ public class GestionAlbum extends JFrame {
 	}
 
 	public void updateImage() {
-		ImageIcon imgI = new ImageIcon(imgLink);
+		ImageIcon imgI = new ImageIcon( imgLink );
 		Image img = imgI.getImage();
-		Image newImg = img.getScaledInstance(100,100,Image.SCALE_SMOOTH);
+		Image newImg = img.getScaledInstance( 100, 100, Image.SCALE_SMOOTH );
 		lblImg.setIcon( new ImageIcon( newImg ) );
 	}
-	public void setList(String[] artiste, String[] genre) {
-		for(String nom : artiste) {
+
+	public void setList( String[] artiste, String[] genre ) {
+		for ( String nom : artiste ) {
 			comboBoxArtiste.addItem( nom );
 		}
-		for(String nom :genre) {
-			comboBoxGenre.addItem(nom);
+		for ( String nom : genre ) {
+			comboBoxGenre.addItem( nom );
 		}
 	}
 

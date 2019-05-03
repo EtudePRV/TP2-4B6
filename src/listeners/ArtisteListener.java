@@ -10,10 +10,10 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import controler.ArtistControler;
 
-public class ArtisteListener implements ActionListener, MouseListener,WindowListener{
+public class ArtisteListener implements ActionListener, MouseListener, WindowListener {
 	private ArtistControler controleur;
 
-	public ArtisteListener(ArtistControler controler ) {
+	public ArtisteListener( ArtistControler controler ) {
 		controleur = controler;
 	}
 
@@ -23,25 +23,25 @@ public class ArtisteListener implements ActionListener, MouseListener,WindowList
 
 		if ( trigger.getClass() == JButton.class ) {
 			switch ( ( (JButton) trigger ).getText() ) {
-			case"Rechercher":
+			case "Rechercher":
 				controleur.rechercher();
 				break;
-			case"Nouveau":
+			case "Nouveau":
 				controleur.nouveau();
 				break;
-			case"Modifier":
+			case "Modifier":
 				controleur.modifier();
 				break;
-			case"Supprimer":
+			case "Supprimer":
 				controleur.supprimer();
 				break;
-			case"Annuler":
+			case "Annuler":
 				controleur.annuler();
 				break;
-			case"Ajouter":
+			case "Ajouter":
 				controleur.ajouter();
 				break;
-			case"Remplacer":
+			case "Remplacer":
 				controleur.remplacer();
 				break;
 			}
@@ -51,76 +51,78 @@ public class ArtisteListener implements ActionListener, MouseListener,WindowList
 
 	@Override
 	public void mouseClicked( MouseEvent e ) {
-		JTable trigger = (JTable)e.getSource();
-		if(trigger.getSelectedRow() >= 0){
-			controleur.select(trigger.getModel().getValueAt( trigger.getSelectedRow(), 0 ).toString() );
+		JTable trigger = (JTable) e.getSource();
+		if ( trigger.getSelectedRow() >= 0 ) {
+			controleur.select( trigger.getModel().getValueAt( trigger.getSelectedRow(), 0 ).toString() );
+			if ( e.getClickCount() == 2 ) {
+				controleur.modifier();
+			}
 		}
-		
+
 	}
 
 	@Override
 	public void mousePressed( MouseEvent e ) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased( MouseEvent e ) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered( MouseEvent e ) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited( MouseEvent e ) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowOpened( WindowEvent e ) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowClosing( WindowEvent e ) {
 		controleur.closing();
-		
+
 	}
 
 	@Override
 	public void windowClosed( WindowEvent e ) {
-		
-		
+
 	}
 
 	@Override
 	public void windowIconified( WindowEvent e ) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowDeiconified( WindowEvent e ) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowActivated( WindowEvent e ) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowDeactivated( WindowEvent e ) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

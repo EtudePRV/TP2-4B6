@@ -16,8 +16,7 @@ public interface Constante {
 	String SELECT_ALBUM_NAME = "SELECT titre FROM albums Where titre = ";
 	String SELECT_ALBUMS = "SELECT albums.id as 'ID',titre as 'Titre',genres.nom as 'Genre',annee as'Année', artistes.nom as 'Artiste' FROM albums "
 			+ "LEFT JOIN artistes on albums.idartise = artistes.id "
-			+ "LEFT JOIN genres on albums.idgenre = genres.id "
-			+ "Where titre Like ";
+			+ "LEFT JOIN genres on albums.idgenre = genres.id " + "Where titre Like ";
 	String ADD_ALBUM = "INSERT INTO albums (titre,idgenre,annee,image,idartise) VALUES ";
 	String UPDATE_ALBUM = "UPDATE albums Set ";
 	String DELETE_ALBUM = "DELETE FROM albums WHERE ID = ";

@@ -1,5 +1,10 @@
 package controler;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -98,5 +103,15 @@ public class AppControler implements Constante {
 	public void CloseGestionArtiste() {
 		isOpen = false;
 		objectHandler.remove( "GestionArtiste" );
+	}
+
+	public void ouvrireAide() {
+		try {
+			File htmlFile = new File( System.getProperty( "user.dir" ) + "/aide/Introduction.html" );
+			Desktop.getDesktop().browse( htmlFile.toURI() );
+		} catch ( IOException e ) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

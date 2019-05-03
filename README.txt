@@ -6,3 +6,5 @@ Ajouter d'autre utilisateur devrait pouvoir ce permetre de ce connecter avec ce 
 il y aura un probleme.
 
 le jar dans le fichier jar est lui que jai utiliser pour la connection a la bd
+
+desoler de la qualiter du code, surtous les views
