@@ -1,3 +1,61 @@
+commit d30d0d2771b0d5277d0ba138943adc8d4d81c71b
+Merge: 5b6025d 76be9b8
+Author: EtudePRV <47183321+EtudePRV@users.noreply.github.com>
+Date:   Thu May 2 23:43:22 2019 -0400
+
+    Merge pull request #1 from EtudePRV/dev
+    
+    Dev
+
+commit 76be9b87056b621923997e772dbbf45d6c74a77e
+Author: Pierre-Rafael Vellone <killer_paul_10@hotmail.com>
+Date:   Thu May 2 23:37:53 2019 -0400
+
+    Final
+    Signed-off-by: Pierre-Rafael Vellone
+
+commit 78c03a61b129bc3f6b853624824469a00bc0df7b
+Author: Pierre-Rafael Vellone <killer_paul_10@hotmail.com>
+Date:   Thu May 2 20:20:02 2019 -0400
+
+    View, Controleur et Model terminer apart pour quelque bug
+    Signed-off-by: Pierre-Rafael Vellone
+
+commit 0966383538286be7020bb70bd76217cb77047555
+Author: Pierre-Rafael Vellone <killer_paul_10@hotmail.com>
+Date:   Wed May 1 17:20:11 2019 -0400
+
+    MVC pour Gestion Artiste Teminer mais en attente de gestion album
+    Signed-off-by: Pierre-Rafael Vellone
+
+commit adadfd725003ec7a23396b47250ab2e69880e15b
+Author: Pierre-Rafael Vellone <killer_paul_10@hotmail.com>
+Date:   Sun Apr 28 22:58:55 2019 -0400
+
+    Listener et controleur a 50% teminer
+    Signed-off-by: Pierre-Rafael Vellone
+
+commit 0cdbd09fcc56950e40fa6d681effe6fd931f29a0
+Author: Pierre-Rafael Vellone <killer_paul_10@hotmail.com>
+Date:   Sat Apr 27 15:52:51 2019 -0400
+
+    Implementation de listener pour le menu
+    Signed-off-by: Pierre-Rafael Vellone
+
+commit 2cddf270f1546a72486f9b81a0b50526739b76d8
+Author: Pierre-Rafael Vellone <killer_paul_10@hotmail.com>
+Date:   Fri Apr 26 18:12:14 2019 -0400
+
+    Listener+controleur pour le Log in
+    Signed-off-by: Pierre-Rafael Vellone
+
+commit 5aa564980c37ca12da2220ff93c751930c584772
+Author: Pierre-Rafael Vellone <killer_paul_10@hotmail.com>
+Date:   Fri Apr 26 09:32:22 2019 -0400
+
+    livrable 1.1
+    Signed-off-by: Pierre-Rafael Vellone
+
 commit b01a71d0c43c670bab7a595ea056d00bfcbd6156
 Author: Pierre-Rafael Vellone <killer_paul_10@hotmail.com>
 Date:   Tue Apr 23 21:34:38 2019 -0400
