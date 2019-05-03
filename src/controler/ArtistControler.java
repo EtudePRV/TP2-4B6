@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import Outils.*;
+import listeners.ArtisteListener;
+import model.ModelAlbum;
 import model.ModelArtiste;
 
 public class ArtistControler implements Constante {
@@ -19,10 +21,8 @@ public class ArtistControler implements Constante {
 	public ArtistControler( SQL bd,AppControler controleur ) {
 		database = bd;
 		controler = controleur;
-	}
-
-	public void setView( GestionArtiste vue ) {
-		view = vue;
+		view = new GestionArtiste(new ArtisteListener(this));
+		this.rechercher();
 	}
 
 	public void rechercher() {
@@ -32,7 +32,7 @@ public class ArtistControler implements Constante {
 
 	public void nouveau() {
 		view.enableModification();
-		view.setValues( "", "", false, (System.getProperty( "user.dir" )+"/DB/img/"+"blank.png") );
+		view.clearValues();
 	}
 
 	public void modifier() {
@@ -58,7 +58,14 @@ public class ArtistControler implements Constante {
 	public void ajouter() {
 		
 		String[] values = view.getValues();
-		if(!ModelArtiste.existe( values[1], database )) {
+		boolean valide = false;
+		if(values[0].equals("") && !ModelArtiste.existe( values[1], database )) {
+			valide = true;
+		} else if(!values[0].equals("")) {
+			valide = true;
+		}
+		
+		if(valide) {
 			ModelArtiste.ajouter(values,database);
 			this.updateTable();
 			view.disableModification();
@@ -99,6 +106,7 @@ public class ArtistControler implements Constante {
 			try {
 				data.next();
 				view.setValues( data.getString( 1 ), data.getString( 2 ), data.getBoolean( 3 ), data.getString( 4 ) );
+				view.setList( ModelAlbum.getArtistAlbums( id, database ) );
 			} catch ( SQLException e ) {
 				System.out.println( "Erreur:ArtisteControler:Select:" + e );
 			}

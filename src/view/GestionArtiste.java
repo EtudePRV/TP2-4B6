@@ -6,23 +6,20 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import listeners.ArtisteListener;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Font;
 import javax.swing.JTable;
 import java.awt.Insets;
-import java.util.Collection;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JCheckBox;
 import javax.swing.ListSelectionModel;
-import java.awt.FlowLayout;
-
 import javax.swing.DefaultListModel;
-import javax.swing.Icon;
 import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -48,7 +45,6 @@ public class GestionArtiste extends JFrame {
 	private JButton btnRemplacer;
 	private JLabel lblErreur;
 	private String imgLink;
-	private ImageIcon image;
 	private JLabel lblImg;
 	private JScrollPane scrollPane;
 	private JScrollPane scrollPane_1;
@@ -167,7 +163,7 @@ public class GestionArtiste extends JFrame {
 		contentPane.add( label, gbc_label );
 
 		textId = new JTextField();
-		textId.setEnabled( false );
+		textId.setEnabled(false);
 		GridBagConstraints gbc_textId = new GridBagConstraints();
 		gbc_textId.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textId.insets = new Insets( 0, 0, 5, 5 );
@@ -285,6 +281,7 @@ public class GestionArtiste extends JFrame {
 		btnAjouter.setEnabled( false );
 		btnAnnuler.setEnabled( false );
 		btnRemplacer.setEnabled( false );
+		updateImage();
 		this.setError( "" );
 	}
 
@@ -316,9 +313,8 @@ public class GestionArtiste extends JFrame {
 	public void setValues( String id, String nom, boolean value, String lien ) {
 		textId.setText( id );
 		textNom.setText( nom );
-		imgLink = lien;
+		this.setImg(lien);
 		chckbxMembre.setSelected( value );
-		updateImage();
 	}
 
 	public void setTable( DefaultTableModel model ) {
@@ -336,8 +332,10 @@ public class GestionArtiste extends JFrame {
 	}
 
 	public void updateImage() {
-		lblImg.setIcon( new ImageIcon( imgLink ) );
-		System.out.println( imgLink );
+		ImageIcon imgI = new ImageIcon(imgLink);
+		Image img = imgI.getImage();
+		Image newImg = img.getScaledInstance(100,100,Image.SCALE_SMOOTH);
+		lblImg.setIcon( new ImageIcon( newImg ) );
 	}
 	public void setList(String[] tempString) {
 		DefaultListModel<String> listModel = new DefaultListModel<>();

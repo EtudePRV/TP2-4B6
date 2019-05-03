@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import Outils.*;
 import listeners.*;
+import model.ModelTableInaccessible;
 import view.*;
 
 public class AppControler implements Constante {
@@ -76,23 +77,20 @@ public class AppControler implements Constante {
 	}
 
 	public void OpenGestionAlbum() {
-
+		if ( !isOpen ) {
+			objectHandler.add( new AlbumControler( database, this ), "GestionAlbum" );
+			isOpen = true;
+		}
 	}
 
 	public void ClosenGestionAlbum() {
-
+		isOpen = false;
+		objectHandler.remove( "GestionAlbum" );
 	}
 
 	public void OpenGestionArtiste() {
 		if ( !isOpen ) {
-			objectHandler.add( new ArtistControler( database, this ), "ArtistControler" );
-			objectHandler.add( new ArtisteListener( this, (ArtistControler) objectHandler.get( "ArtistControler" ) ),
-					"ArtisteListener" );
-			objectHandler.add( new GestionArtiste( (ArtisteListener) objectHandler.get( "ArtisteListener" ) ),
-					"GestionArtiste" );
-			( (ArtistControler) objectHandler.get( "ArtistControler" ) )
-					.setView( (GestionArtiste) objectHandler.get( "GestionArtiste" ) );
-			( (ArtistControler) objectHandler.get( "ArtistControler" ) ).updateTable();
+			objectHandler.add( new ArtistControler( database, this ), "GestionArtiste" );
 			isOpen = true;
 		}
 	}
@@ -100,7 +98,5 @@ public class AppControler implements Constante {
 	public void CloseGestionArtiste() {
 		isOpen = false;
 		objectHandler.remove( "GestionArtiste" );
-		objectHandler.remove( "ArtisteListener" );
-		objectHandler.remove( "ArtistControler" );
 	}
 }
